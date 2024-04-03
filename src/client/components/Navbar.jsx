@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <>
-      <div className="bg-blue-200 flex justify-between p-5 border-solid border-2 border-b-blue-400">
+      <div className="bg-blue-200 flex justify-between p-5 border-2 border-blue-200 border-b-blue-400">
         <h1 className="text-4xl font-bold">Trip Tracker</h1>
         <div className="flex gap-5 border-red-500">
           <Link to="/">
