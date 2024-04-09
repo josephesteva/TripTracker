@@ -52,4 +52,19 @@ router.patch('/:id', async (req, res, next) => {
 	}
 })
 
+// DELETE 
+router.delete('/:id', async (req, res, next) => {
+	const id = +req.params.id;
+	try {
+		const destination = await prisma.destination.delete({
+			where: {
+				id
+			}
+		})
+		res.status(200).send(destination)
+	} catch (error) {
+		console.log(error);
+	}
+})
+
 module.exports = router;
