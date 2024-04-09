@@ -4,9 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/server/main.js -w src/server",
-    "start": "NODE_ENV=production node src/server/main.js",
-    "build": "vite build"
+    "dev": "nodemon src/server/main.cjs -w src/server",
+    "start": "NODE_ENV=production node src/server/main.cjs",
+    "build": "vite build",
+		"seed": "npx prisma migrate reset && node ./prisma/seed.js"
   },
   "dependencies": {
     "@prisma/client": "^5.11.0",
