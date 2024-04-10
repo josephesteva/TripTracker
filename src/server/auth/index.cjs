@@ -18,7 +18,8 @@ router.post('/register', async (req, res, next) => {
 				password: hashedPassword
 			}
 		})
-		res.status(201).send(user)	
+		const token = jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET)
+		res.status(201).send({token})	
 	} catch (error) {
 		console.log(error);
 	}
@@ -34,6 +35,11 @@ router.post('/login', async (req, res, next) => {
 			}
 		})
 
+		if(!user) {
+			res.status(401).send({message: 'Invalid username'})
+			return
+		}
+
 		const isValid = await bcrypt.compare(password, user.password)
 
 		if (!isValid) {
@@ -41,7 +47,9 @@ router.post('/login', async (req, res, next) => {
 			return
 		}
 
-		res.status(200).send(user)
+		const token = jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET)
+
+		res.status(200).send({token})
 	} catch (error) {
 		console.log(error);
 	}
