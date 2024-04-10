@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -7,12 +7,27 @@ function Navbar() {
       <div className="bg-blue-200 flex justify-between p-5 border-2 border-blue-200 border-b-blue-400">
         <h1 className="text-4xl font-bold">Trip Tracker</h1>
         <div className="flex gap-5 border-red-500">
-          <Link to="/">
-            <h3 className="py-2 px-5 text-lg font-semibold bg-blue-400 border border-black rounded-md hover:bg-blue-600 hover:text-white hover:border-white hover:scale-125">Home</h3>
-          </Link>
-          <Link to="/profile">
-            <h3 className="py-2 px-5 text-lg font-semibold bg-blue-400 border border-black rounded-md hover:bg-blue-600 hover:text-white hover:border-white hover:scale-125">Profile</h3>
-          </Link>
+          <NavLink to="/" className={({isActive}) => isActive ? "bg-blue-600 rounded-md" : "bg-blue-400 rounded-md"}>
+            <h3 className="py-2 px-5 text-lg font-semibold border border-black rounded-md hover:text-white hover:border-white"
+						activeClassName="bg-green-700">
+              Home
+            </h3>
+          </NavLink>
+          <NavLink to="/profile" className={({isActive}) => isActive ? "bg-blue-600 rounded-md" : "bg-blue-400 rounded-md"}>
+            <h3 className="py-2 px-5 text-lg font-semibold border border-black rounded-md hover:text-white hover:border-white">
+              Profile
+            </h3>
+          </NavLink>
+          <NavLink to="/login" className={({isActive}) => isActive ? "bg-blue-600 rounded-md" : "bg-blue-400 rounded-md"}>
+            <h3 className="py-2 px-5 text-lg font-semibold border border-black rounded-md hover:text-white hover:border-white">
+              Login
+            </h3>
+          </NavLink>
+          <NavLink to="/register" className={({isActive}) => isActive ? "bg-blue-600 rounded-md" : "bg-blue-400 rounded-md"}>
+            <h3 className="py-2 px-5 text-lg font-semibold border border-black rounded-md hover:text-white hover:border-white">
+              Register
+            </h3>
+          </NavLink>
         </div>
       </div>
     </>
