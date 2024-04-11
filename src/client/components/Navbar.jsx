@@ -8,8 +8,7 @@ function Navbar() {
         <h1 className="text-4xl font-bold">Trip Tracker</h1>
         <div className="flex gap-5 border-red-500">
           <NavLink to="/" className={({isActive}) => isActive ? "bg-blue-600 rounded-md" : "bg-blue-400 rounded-md"}>
-            <h3 className="py-2 px-5 text-lg font-semibold border border-black rounded-md hover:text-white hover:border-white"
-						activeClassName="bg-green-700">
+            <h3 className="py-2 px-5 text-lg font-semibold border border-black rounded-md hover:text-white hover:border-white">
               Home
             </h3>
           </NavLink>
