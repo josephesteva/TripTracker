@@ -1,18 +1,25 @@
 import React, { useContext, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.jsx";
+import axios from "axios";
 
 function Navbar() {
   const { user, setUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
-  function updateUser() {
-    const token = window.localStorage.getItem("token");
-    if (token) {
-      setUser({ username: "logged in" });
-    }
-    console.log(token);
+  async function updateUser() {
+		const user = await axios.get('/auth/check', {
+			headers: {
+				Authorization: "Bearer " + localStorage.getItem('token')
+			}
+		})
+		if (user.data === 'Not logged in') {
+			setUser(null)
+		} else {
+			setUser(user.data)
+		}
+
   }
 
   function handleLogout() {

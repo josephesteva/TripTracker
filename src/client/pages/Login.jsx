@@ -15,11 +15,11 @@ export default function Login() {
     e.preventDefault();
     console.log("username", username, "pasword: ", password);
     try {
-      const { data: token } = await axios.post("/auth/login", {
+      const { data } = await axios.post("/auth/login", {
         username,
         password,
       });
-      window.localStorage.setItem("token", JSON.stringify(token.token));
+      window.localStorage.setItem("token", data.token);
 			setUser({username})
       navigate("/");
     } catch (error) {

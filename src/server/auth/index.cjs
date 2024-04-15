@@ -1,3 +1,4 @@
+
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -51,6 +52,21 @@ router.post('/login', async (req, res, next) => {
 
 		res.status(200).send({token})
 	} catch (error) {
+		console.log(error);
+	}
+})
+
+// GET 
+// checks token validity from local storage
+router.get('/check', async (req, res, next) => {
+	const bearer = req.headers.authorization
+	const [, token] = bearer.split(" ");
+
+	try {
+		const user = jwt.verify(token, process.env.JWT_SECRET)
+		res.status(200).send(user)
+	} catch (error) {
+		res.status(200).send('Not logged in')
 		console.log(error);
 	}
 })
