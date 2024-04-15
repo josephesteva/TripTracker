@@ -27,7 +27,7 @@ export default function Register() {
 
   return (
     <div className="p-5">
-      <h1 className="text-3xl pb-3">Register</h1>
+      <h1 className="text-2xl font-bold pb-3">Register</h1>
       <form className="flex flex-col gap-3" onSubmit={handleRegister}>
         <div>
           <p>Username: </p>

@@ -27,7 +27,7 @@ export default function Login() {
 
   return (
     <div className="p-5">
-      <h1 className="text-3xl pb-3">Login</h1>
+      <h1 className="text-2xl font-bold pb-3">Login</h1>
         <form className="flex flex-col gap-3" onSubmit={handleLogin}>
           <div>
             <p>Username: </p>
