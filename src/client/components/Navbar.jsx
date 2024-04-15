@@ -9,15 +9,21 @@ function Navbar() {
   const navigate = useNavigate();
 
   async function updateUser() {
-		const user = await axios.get('/auth/check', {
-			headers: {
-				Authorization: "Bearer " + localStorage.getItem('token')
+		try {
+			
+			const { data } = await axios.get('/auth/check', {
+				headers: {
+					Authorization: "Bearer " + localStorage.getItem('token')
+				}
+			})
+			if (data?.message === 'Not logged in') {
+				setUser(null)
+			} else {
+				setUser(data.user)
+				window.localStorage.setItem("token", data.newToken)
 			}
-		})
-		if (user.data === 'Not logged in') {
-			setUser(null)
-		} else {
-			setUser(user.data)
+		} catch (error) {
+			console.log(error);
 		}
 
   }

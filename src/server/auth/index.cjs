@@ -19,7 +19,7 @@ router.post('/register', async (req, res, next) => {
 				password: hashedPassword
 			}
 		})
-		const token = jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET)
+		const token = jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET, { expiresIn: '1d' })
 		res.status(201).send({token})	
 	} catch (error) {
 		console.log(error);
@@ -48,7 +48,7 @@ router.post('/login', async (req, res, next) => {
 			return
 		}
 
-		const token = jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET)
+		const token = jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET, { expiresIn: '1d' })
 
 		res.status(200).send({token})
 	} catch (error) {
@@ -64,9 +64,10 @@ router.get('/check', async (req, res, next) => {
 
 	try {
 		const user = jwt.verify(token, process.env.JWT_SECRET)
-		res.status(200).send(user)
+		const newToken = jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET, { expiresIn: '1d' })
+		res.status(200).send({user, newToken})
 	} catch (error) {
-		res.status(200).send('Not logged in')
+		res.status(200).send({message: 'Not logged in'})
 		console.log(error);
 	}
 })
