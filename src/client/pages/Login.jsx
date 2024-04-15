@@ -1,11 +1,10 @@
 import axios from "axios";
-import React, { useContext } from "react";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.jsx";
 
 export default function Login() {
-	const {user, setUser} = useContext(AuthContext)
+  const { setUser } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,15 +12,14 @@ export default function Login() {
 
   async function handleLogin(e) {
     e.preventDefault();
-    console.log("username", username, "pasword: ", password);
     try {
       const { data } = await axios.post("/auth/login", {
         username,
         password,
       });
+      setUser({ username });
       window.localStorage.setItem("token", data.token);
-			setUser({username})
-      navigate("/");
+      navigate('/');
     } catch (error) {
       console.log(error);
     }
@@ -30,7 +28,6 @@ export default function Login() {
   return (
     <div className="p-5">
       <h1 className="text-3xl pb-3">Login</h1>
-      <div>
         <form className="flex flex-col gap-3" onSubmit={handleLogin}>
           <div>
             <p>Username: </p>
@@ -56,7 +53,6 @@ export default function Login() {
             Login
           </button>
         </form>
-      </div>
     </div>
   );
 }

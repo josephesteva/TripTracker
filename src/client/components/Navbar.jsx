@@ -19,12 +19,14 @@ function Navbar() {
 			if (data?.message === 'Not logged in') {
 				setUser(null)
 			} else {
-				setUser(data.user)
+				console.log(data);
+				setUser({username: data.user.username})
 				window.localStorage.setItem("token", data.newToken)
 			}
 		} catch (error) {
 			console.log(error);
 		}
+		console.log('user', user);
 
   }
 
@@ -36,12 +38,14 @@ function Navbar() {
 
   useEffect(() => {
     updateUser();
+		console.log(user);
   }, []);
 
   return (
     <>
       <div className="bg-blue-200 flex justify-between p-5 border-2 border-blue-200 border-b-blue-400">
         <h1 className="text-4xl font-bold">Trip Tracker</h1>
+				<p>{user?.username}</p>
         <div className="flex gap-5 border-red-500">
           <NavLink
             to="/"
