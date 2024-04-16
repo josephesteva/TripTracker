@@ -27,8 +27,7 @@ function Home() {
           return (
             <div key={destination.id} className="border border-blue-500 rounded-md p-5 my-5 w-5/12 text-center">
               <h3>{destination.name}</h3>
-              <p>{destination.location}</p>
-              <p>{destination.description}</p>
+              <p>{destination.country}</p>
             </div>
           );
         })}

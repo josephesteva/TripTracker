@@ -30,13 +30,15 @@ router.get('/:id', async (req, res, next) => {
 
 // POST
 router.post('/', async (req, res, next) => {
-	const {name, location, description} = req.body
+	const {name, country, description, imageUrl, location} = req.body
 	try {		
 		const destination = await prisma.destination.create({
 			data: {
 				name,
-				location,
-				description
+				country,
+				description, 
+				imageUrl,
+				location
 			}
 		})
 		res.status(201).send(destination)
@@ -56,8 +58,10 @@ router.patch('/:id', async (req, res, next) => {
 			},
 			data: {
 				name,
-				location,
-				description
+				country,
+				description,
+				imageUrl,
+				location
 			}
 		})
 		res.status(200).send(destination)

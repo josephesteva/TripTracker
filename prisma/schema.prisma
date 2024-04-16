@@ -18,18 +18,20 @@ model User {
   username            String                @unique
   password            String
   DestinationsOnUsers DestinationsOnUsers[]
-  Comments            Comments[]
-  Likes               Likes[]
+  Comments            Comment[]
+  Likes               Like[]
 }
 
 model Destination {
   id                  Int                   @id @default(autoincrement())
   name                String
-  location            String?
+	country							String?
   description         String?
+	imageUrl						String?
+  location            String?
   DestinationsOnUsers DestinationsOnUsers[]
-  Comments            Comments[]
-  Likes               Likes[]
+  Comments            Comment[]
+  Likes               Like[]
 }
 
 model DestinationsOnUsers {
@@ -42,9 +44,9 @@ model DestinationsOnUsers {
   notes         String
 }
 
-model Comments {
+model Comment {
   id            Int         @id @default(autoincrement())
-	content				String
+  content       String
   user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId        Int
   destination   Destination @relation(fields: [destinationId], references: [id], onDelete: Cascade)
@@ -53,7 +55,7 @@ model Comments {
   updatedAt     DateTime?   @updatedAt
 }
 
-model Likes {
+model Like {
   id            Int         @id @default(autoincrement())
   user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId        Int

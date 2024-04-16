@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 export default function AddDestination() {
 	const [name, setName] = useState('')
-	const [location, setLocation] = useState('')
+	const [country, setCountry] = useState('')
 	const [description, setDescription] = useState('')
+	const [imageUrl, setImageUrl] = useState('')
+	const [location, setLocation] = useState('')
 
 	const navigate = useNavigate()
 
@@ -14,8 +16,10 @@ export default function AddDestination() {
 		try {
 			const destination = await axios.post('/api/destinations/', {
 				name,
-				location,
-				description
+				country,
+				description,
+				imageUrl,
+				location
 			});
 			console.log(destination);
 			navigate('/')
@@ -34,12 +38,16 @@ export default function AddDestination() {
             <input type="text" placeholder="Destination Name" className="border border-black rounded-md w-1/2" value={name} onChange={e=>setName(e.target.value)}/>
           </div>
 					<div>
-            <p>Location: </p>
-            <input type="text" placeholder="Destination Location" className="border border-black rounded-md w-1/2" value={location} onChange={e=>setLocation(e.target.value)}/>
+            <p>Country: </p>
+            <input type="text" placeholder="Destination Country" className="border border-black rounded-md w-1/2" value={country} onChange={e=>setCountry(e.target.value)}/>
           </div>
 					<div >
             <p>Description: </p>
             <textarea type="text" placeholder="Destination Description" className="border border-black rounded-md w-1/2 h-32" value={description} onChange={e=>setDescription(e.target.value)} />
+          </div>
+					<div>
+            <p>Location: </p>
+            <input type="text" placeholder="Destination Location" className="border border-black rounded-md w-1/2" value={location} onChange={e=>setLocation(e.target.value)}/>
           </div>
 					<button type='submit' className="border border-black rounded-md mr-auto px-5 py-1">Add Destination</button>
         </form>
