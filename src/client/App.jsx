@@ -6,6 +6,7 @@ import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AddDestination from "./pages/AddDestination";
+import SingleDestination from "./pages/SingleDestination";
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
 			<Navbar/>
 			<Routes>
 				<Route path='/' element={<Home />} />
+				<Route path='/:id' element={<SingleDestination />} />
 				<Route path='/profile' element={<Profile />} />
 				<Route path='/login' element={<Login />} />
 				<Route path='/register' element={<Register />} />

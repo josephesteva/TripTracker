@@ -21,11 +21,11 @@ function Home() {
 
   return (
     <div className="p-5">
-      <div>Browse Destinations</div>
-      <div>
+      <div className="text-2xl font-bold pb-3">Browse Destinations</div>
+      <div className="flex flex-wrap justify-around">
         {destinations.map((destination) => {
           return (
-            <div key={destination.id}>
+            <div key={destination.id} className="border border-blue-500 rounded-md p-5 my-5 w-5/12 text-center">
               <h3>{destination.name}</h3>
               <p>{destination.location}</p>
               <p>{destination.description}</p>
@@ -33,7 +33,7 @@ function Home() {
           );
         })}
       </div>
-      <Link to="/add">Add Destination</Link>
+      <Link to="/add" className="border border-black px-5 py-1">Add Destination</Link>
     </div>
   );
 }

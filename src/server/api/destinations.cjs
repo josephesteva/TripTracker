@@ -14,6 +14,20 @@ router.get('/', async (req, res) => {
 	}
 })
 
+router.get('/:id', async (req, res, next) => {
+	const id = +req.params.id
+	try {
+		const destination = await prisma.destination.findUnique({
+			where: {
+				id
+			}
+		})
+		res.status(200).send(destination)
+	} catch (error) {
+		console.log(error);
+	}
+})
+
 // POST
 router.post('/', async (req, res, next) => {
 	const {name, location, description} = req.body
